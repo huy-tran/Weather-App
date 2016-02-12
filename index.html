@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Weather App</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/stylesheets/style.css">
+</head>
+<body>
+  <div class="container text-center">
+    <div class="row location">
+      <!-- Loading State -->
+      <div class="sk-folding-cube loading">
+        <div class="sk-cube1 sk-cube"></div>
+        <div class="sk-cube2 sk-cube"></div>
+        <div class="sk-cube4 sk-cube"></div>
+        <div class="sk-cube3 sk-cube"></div>
+      </div>
+    </div> <!--End Location -->
+
+    <div class="row weather-display">
+      <div class="col-md-6 weather-temp">
+        <div class="temp-toggle">
+          <input type="checkbox" id="temp-toggle">
+          <label for="temp-toggle"></label>
+        </div>
+      </div>
+      <div class="col-md-6 weather-main">
+        <div class="row weather-icon">
+          <!-- <div class="cloud"></div> -->
+          <img src="images/unknown.png" alt="">
+        </div>
+      </div>
+    </div> <!--End Weather Display-->
+
+    <div class="row weather-forecast"></div>
+    <div class="row author">
+			<p>Made with <img src="images/coffee.png"> by <a href="http://www.huy-tran.info" target="_blank">Huy Tran</a></p>
+		</div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script src="js/scripts.js"></script>
+</body>
+</html>

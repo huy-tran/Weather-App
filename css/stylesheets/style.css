@@ -1,0 +1,279 @@
+/* line 5, ../sass/style.scss */
+html {
+  font-size: 16px;
+}
+
+/* line 9, ../sass/style.scss */
+body {
+  font-family: Lato;
+  background: #16222A;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #16222A, #3A6073);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #16222A, #3A6073);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+/* line 15, ../sass/style.scss */
+.no-geo {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #d35d67;
+  font-weight: bold;
+  font-size: 3rem;
+}
+
+/* line 24, ../sass/style.scss */
+.location {
+  height: 100px;
+}
+/* line 26, ../sass/style.scss */
+.location h2 {
+  color: #d35d67;
+  font-size: 4rem;
+  font-weight: bold;
+  display: none;
+}
+
+/* line 33, ../sass/style.scss */
+.weather-display {
+  margin: 25px 0;
+}
+/* line 35, ../sass/style.scss */
+.weather-display .weather-icon img {
+  width: 50%;
+  animation: move 10s infinite;
+}
+/* line 39, ../sass/style.scss */
+.weather-display .temp {
+  font-size: 5.5rem;
+  font-weight: bold;
+  color: #f2ea65;
+}
+/* line 44, ../sass/style.scss */
+.weather-display .weather-main {
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+/* line 49, ../sass/style.scss */
+.weather-forecast {
+  color: #fff;
+  margin-bottom: 30px;
+}
+/* line 52, ../sass/style.scss */
+.weather-forecast h2 {
+  font-size: 1.3rem;
+  margin-bottom: 50px;
+}
+/* line 55, ../sass/style.scss */
+.weather-forecast h2.warning {
+  font-size: 1.2rem;
+  color: #e3999f;
+  font-style: italic;
+}
+/* line 60, ../sass/style.scss */
+.weather-forecast h2 span {
+  color: #5dd3c9;
+  font-size: 1.5rem;
+}
+/* line 65, ../sass/style.scss */
+.weather-forecast h3 {
+  color: #5dd3c9;
+}
+/* line 68, ../sass/style.scss */
+.weather-forecast img {
+  width: 100px;
+  position: relative;
+}
+/* line 72, ../sass/style.scss */
+.weather-forecast .forecast-item {
+  margin: 20px 0;
+}
+/* line 74, ../sass/style.scss */
+.weather-forecast .forecast-item .temp {
+  font-size: 3rem;
+  color: #f2ea65;
+}
+
+/* line 81, ../sass/style.scss */
+.temp-toggle {
+  display: none;
+  text-align: center;
+}
+/* line 84, ../sass/style.scss */
+.temp-toggle input {
+  display: none;
+}
+/* line 87, ../sass/style.scss */
+.temp-toggle label {
+  display: block;
+  position: relative;
+  margin: 20px auto;
+  width: 80px;
+  height: 30px;
+  background: #bbb;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: background .4s;
+}
+/* line 97, ../sass/style.scss */
+.temp-toggle label::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  transition: margin .4s;
+}
+/* line 111, ../sass/style.scss */
+.temp-toggle input:checked + label {
+  background: #8ce196;
+}
+/* line 113, ../sass/style.scss */
+.temp-toggle input:checked + label::after {
+  margin-left: 50px;
+}
+
+/* line 120, ../sass/style.scss */
+.author {
+  margin: 30px;
+  color: #fff;
+  font-size: 1rem;
+}
+/* line 124, ../sass/style.scss */
+.author a {
+  color: #d35d67;
+}
+/* line 127, ../sass/style.scss */
+.author img {
+  width: 32px;
+  vertical-align: bottom;
+  margin: 0 5px;
+}
+
+@keyframes move {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(50px);
+  }
+  75% {
+    transform: translateX(-50px);
+  }
+}
+/* line 139, ../sass/style.scss */
+.sk-folding-cube {
+  display: none;
+  margin: 20px auto;
+  width: 40px;
+  height: 40px;
+  position: relative;
+  -webkit-transform: rotateZ(45deg);
+  transform: rotateZ(45deg);
+}
+
+/* line 149, ../sass/style.scss */
+.sk-folding-cube .sk-cube {
+  float: left;
+  width: 50%;
+  height: 50%;
+  position: relative;
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+/* line 158, ../sass/style.scss */
+.sk-folding-cube .sk-cube:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  -webkit-animation: sk-foldCubeAngle 2.4s infinite linear both;
+  animation: sk-foldCubeAngle 2.4s infinite linear both;
+  -webkit-transform-origin: 100% 100%;
+  -ms-transform-origin: 100% 100%;
+  transform-origin: 100% 100%;
+}
+
+/* line 172, ../sass/style.scss */
+.sk-folding-cube .sk-cube2 {
+  -webkit-transform: scale(1.1) rotateZ(90deg);
+  transform: scale(1.1) rotateZ(90deg);
+}
+
+/* line 176, ../sass/style.scss */
+.sk-folding-cube .sk-cube3 {
+  -webkit-transform: scale(1.1) rotateZ(180deg);
+  transform: scale(1.1) rotateZ(180deg);
+}
+
+/* line 180, ../sass/style.scss */
+.sk-folding-cube .sk-cube4 {
+  -webkit-transform: scale(1.1) rotateZ(270deg);
+  transform: scale(1.1) rotateZ(270deg);
+}
+
+/* line 184, ../sass/style.scss */
+.sk-folding-cube .sk-cube2:before {
+  -webkit-animation-delay: 0.3s;
+  animation-delay: 0.3s;
+}
+
+/* line 188, ../sass/style.scss */
+.sk-folding-cube .sk-cube3:before {
+  -webkit-animation-delay: 0.6s;
+  animation-delay: 0.6s;
+}
+
+/* line 192, ../sass/style.scss */
+.sk-folding-cube .sk-cube4:before {
+  -webkit-animation-delay: 0.9s;
+  animation-delay: 0.9s;
+}
+
+@-webkit-keyframes sk-foldCubeAngle {
+  0%, 10% {
+    -webkit-transform: perspective(140px) rotateX(-180deg);
+    transform: perspective(140px) rotateX(-180deg);
+    opacity: 0;
+  }
+  25%, 75% {
+    -webkit-transform: perspective(140px) rotateX(0deg);
+    transform: perspective(140px) rotateX(0deg);
+    opacity: 1;
+  }
+  90%, 100% {
+    -webkit-transform: perspective(140px) rotateY(180deg);
+    transform: perspective(140px) rotateY(180deg);
+    opacity: 0;
+  }
+}
+@keyframes sk-foldCubeAngle {
+  0%, 10% {
+    -webkit-transform: perspective(140px) rotateX(-180deg);
+    transform: perspective(140px) rotateX(-180deg);
+    opacity: 0;
+  }
+  25%, 75% {
+    -webkit-transform: perspective(140px) rotateX(0deg);
+    transform: perspective(140px) rotateX(0deg);
+    opacity: 1;
+  }
+  90%, 100% {
+    -webkit-transform: perspective(140px) rotateY(180deg);
+    transform: perspective(140px) rotateY(180deg);
+    opacity: 0;
+  }
+}
