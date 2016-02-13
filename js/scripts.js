@@ -9,57 +9,55 @@ jQuery(document).ready(function($) {
   var $temp = $('.temp');
   var tempsArr = []; // Array to store forecast temperatures
   var currentTemp; // Temperature of current request API
+  var countryName; // Display full country name rather than using Country Code
 
   // Check if browser supports Geolocation. Throwing warning if not.
   if (!navigator.geolocation) {
     $('.container').html("<h1 class='no-geo'>Geolocation is not supported by your browser</h1>");
+    return false;
   }
 
   $loading.show(); // Display loading state when the page is loading
 
-  // var today = new Date().toString().split(' ').slice(0, 4).join(' '); // Get time in HH:MM format
-  // var forecastTitle = "<h2>Weather Forecast of <span>" + today + "</span></h2>";
-  // $weatherForecast.prepend(forecastTitle); // Show location title
+  // Get User IP using ipify
+  var getUserIP = $.getJSON("https://api.ipify.org?format=jsonp&callback=?");
+
+  // When getUserIP is success, execute getGeolocation
+  getUserIP.done(function(data) {
+    var userIP = data.ip;
+    getGeolocation(userIP);
+  });
 
   /**
-   *  [make API request after allowing geolocation]
-   *  @method geoSuccess
-   *  @param  {[object]} position [object passed from successul geolocation]
-   *  @return {[null]}
+   * [Get geolocation using API from freegeoip. Make request to weather API when successful]
+   * @param  {string} ip [user ip address]
+   * @return {null}
    */
-  function geoSuccess(position) {
-    // Get coordinates from geolocation
-    var lat = position.coords.latitude;
-    var lng = position.coords.longitude;
+  function getGeolocation(ip) {
+    var urlRequest = 'http://freegeoip.net/json/' + ip;
+    $.getJSON(urlRequest)
+      .done(function(response) {
+        var lat = response.latitude;
+        var lng = response.longitude;
+        countryName = response.country_name;
+        // API url
+        var forecastUrl = "http://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lng + "&appid=" + APIKey;
+        var currentUrl = "http://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lng + "&appid=" + APIKey;
+        // Make async request
+        var currentPromise = currentRequest(currentUrl);
+        var forecastPromise = forecastRequest(forecastUrl);
 
-    // API url
-    var forecastUrl = "http://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lng + "&appid=" + APIKey;
-    var currentUrl = "http://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lng + "&appid=" + APIKey;
-
-    // Make async request
-    var currentPromise = currentRequest(currentUrl);
-    var forecastPromise = forecastRequest(forecastUrl);
-
-
-    currentPromise.done(function(data){
-      currentSuccess(data);
-    });
-    forecastPromise.done(function(data){
-      forecastSuccess(data);
-    });
+        currentPromise.done(function(data){
+          currentSuccess(data);
+        });
+        forecastPromise.done(function(data){
+          forecastSuccess(data);
+        });
+      })
+      .fail(function() {
+        $location.html("<h2>Unable to retrieve your location</h2>");
+      });
   }
-
-  /**
-   *  [Display error when not allowing using geolocation]
-   *  @method geoError
-   *  @return {[null]}
-   */
-  function geoError() {
-    $location.html("<h2>Unable to retrieve your location</h2>");
-  }
-
-  // If browser supports geolocation, run the app
-  navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
 
   // Initialise deferred object
   var forecastDeferred = $.Deferred();
@@ -118,7 +116,7 @@ jQuery(document).ready(function($) {
    */
   function currentSuccess(data) {
     var locationCity = data.name;
-    var locationCountry = data.sys.country;
+    var locationCountry = countryName;
     var temp = data.main.temp;
     var condition = data.weather[0].main;
     var description = data.weather[0].description;
